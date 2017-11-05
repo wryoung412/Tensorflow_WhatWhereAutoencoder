@@ -174,6 +174,7 @@ class WhatWhereAutoencoder():
     self._step = tf.assign(self._current_step, self._current_step + 1)
 
     # build models
+    # Note: input batch size is fixed!
     input = tf.placeholder(tf.float32, self._batch_shape, name='input')
     train, encode, decode = self.build_mnist_model(input, use_unpooling=True)  # Autoencoder using Where information
     naive_train, naive_encode, naive_decode = self.build_mnist_model(input, use_unpooling=False)  # regular Autoencoder
