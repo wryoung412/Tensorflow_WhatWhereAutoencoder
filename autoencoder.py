@@ -154,7 +154,7 @@ with tf.Session() as sess:
   tf.summary.image('source/image_pair',
                    tf.concat((input, output), axis=2), collections=['image'])
   scalar_summary_op = tf.summary.merge_all('scalar')
-  image_summary_op = tf.summary.merge_all('scalar')
+  image_summary_op = tf.summary.merge_all('image')
 
   batch = batch_generator(X_train, args.batch_size)
   start_time = time.time()
