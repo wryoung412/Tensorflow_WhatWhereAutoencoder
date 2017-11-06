@@ -9,7 +9,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data_dir', type=str, default='./data', help='MNIST dataset location')
-parser.add_argument('--batch_size', type=int, default=1,
+parser.add_argument('--batch_size', type=int, default=10,
                     help='Batch size')
 parser.add_argument('--num_batches', type=int, default=1000,
                     help='Number of batches to train')
@@ -141,7 +141,7 @@ def batch_generator(X_train, batch_size):
 
 input = tf.placeholder(tf.float32, [None, 28, 28, 1], name='input')
 output = mnist_model(input)
-loss = tf.nn.l2_loss(output - input)
+loss = tf.reduce_mean(tf.squared_difference(output, input))
 train_op = tf.train.AdamOptimizer(learning_rate=1e-3).minimize(loss)
 
 with tf.Session() as sess:
